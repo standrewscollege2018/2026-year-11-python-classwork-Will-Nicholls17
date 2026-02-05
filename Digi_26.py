@@ -1,20 +1,45 @@
 ''' This program demonstrates print(), data types, variables, inputs and f-strings'''
 
-# print() is a function that outputs whatever is inside the brackets
-#numbets can be included directly in the brackets
-print(123)
+import random
 
-#when printing text, it must be in speechmarkers which turns it into a string
-print("Hello")
+name = input("Hello, what is your first name? >")
 
-name = input("what is your name?")
-
-surname =  input("What is your surname?")
+surname =  input(f"What is your last name {name}? >")
 
 print(f"Hello {name} {surname}")
 
-print(f"{'left aligned text' : <20}")
+LOWER_LIMIT = 1
 
-number = input("choose a number 0 - 100")
+UPPER_LIMIT = 100
 
-if number >=100 
+answer = random.randint(1, 100)
+
+keep_asking = True
+
+while keep_asking == True:
+    
+    guess_invalid = True
+
+    while guess_invalid == True:
+        try:
+            guess = int(input(f'\nEnter a number {name} > ')) 
+
+            if guess >= LOWER_LIMIT and guess <= UPPER_LIMIT:
+                guess_invalid = False
+            else:
+                print(f"Error: Please enter a number between {LOWER_LIMIT} and {UPPER_LIMIT}")
+        except ValueError: 
+            print("Invalid. Please enter an integer")
+    
+    if guess == answer:
+        print(f"Congrats {name} {surname} your guess is correct!")
+        play_again = input("Do you want to play again? (No caps) >")
+        if play_again == "yes":
+            keep_asking = True
+            answer = random.randint(1, 100)
+        else: 
+            keep_asking = False  
+    elif guess > answer:
+        print(f"Your guess is too high, {name} try again.")
+    elif guess < answer:
+        print(f"Your guess is too low, {name} try again.")
