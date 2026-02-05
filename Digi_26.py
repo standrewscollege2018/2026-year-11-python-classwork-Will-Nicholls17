@@ -14,7 +14,7 @@ LOWER_LIMIT = 1
 
 UPPER_LIMIT = 100
 
-answer = random.randint(1, 100)
+answer = random.randint(LOWER_LIMIT, UPPER_LIMIT)
 
 keep_asking = True
 
@@ -38,14 +38,14 @@ while keep_asking == True:
         play_again = input("Do you want to play again? (No caps) >")
         if play_again == "yes":
             keep_asking = True
-            answer = random.randint(1, 100)
+            answer = random.randint(LOWER_LIMIT, UPPER_LIMIT)
         else: 
             keep_asking = False  
     elif guess > answer:
         print(f"Your guess is too high, {name} try again.")
     elif guess < answer:
         print(f"Your guess is too low, {name} try again.")
-print(f"Thanks for playing {name} {surname}! Now we are going to play a different game. You are going to be a police officer and you have to catch a theif. In order to catch the theif, you must write a description of them. The thief is going to be hiding in one of the 3 rooms. I'm going to give you some clues as to where he might be hiding. You have to guess which room the thief is hiding in. Good luck {name} {surname}!")
+print(f"Thanks for playing {name} {surname}! Now we are going to play a different game. You are going to be a police officer and you have to catch a theif. In order to catch the theif, you must write a description of them. The thief is going to be hiding in one of the 3 rooms.You have to guess which room the thief is hiding in. Good luck {name} {surname}!")
 
 correct_room = random.randint(1, 3)
 
