@@ -2,7 +2,7 @@
 
 import random
 
-print("Hi, Welcome to my program! I'm going to ask you some questions and then I'm going to give you some games to play. Let's get started!")
+print("Hi, Welcome to my program! I'm going to ask you some questions and then I'm going to give you some games to play. Let's get started! The first game is a number guessing game. I'm going to think of a number between 1 and 100 and you have to guess it. Good luck!")
 
 name = input("Firstly, what is your first name? >")
 
@@ -58,7 +58,7 @@ theif_hair_color = input(f"What is the hair color of the thief {name}? >")
 theif_weight_input = True
 while theif_weight_input:
     try:
-        theif_weight = int(input(f"What is the estimated weight of the thief {name}? >"))
+        theif_weight = int(input(f"What is the estimated weight of the thief {name}? (KG)>"))
         if theif_weight < 0:
             print("Invalid weight. Please enter a positive integer.")
         else:
@@ -93,7 +93,7 @@ print("Thanks for playing both my games, now I know that everyone needs a strong
 password_length_input = True
 while password_length_input:
     try:
-        password_length = int(input(f"What is the desired length of your password {name}? >"))
+        password_length = int(input(f"What is the desired length of your password {name}? 1 - 100>"))
         if password_length < 0:
             print("Invalid length. Please enter a positive integer.")
         elif password_length > 100:
