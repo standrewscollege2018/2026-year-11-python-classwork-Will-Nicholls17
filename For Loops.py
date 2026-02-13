@@ -28,17 +28,3 @@ for i in range(1, number1 + 1):
         print(i)
 print("All done!")
 
-print("Welcome to the raffle program")
-
-raffle_prize = input("What is the prize for the raffle? > ")
-
-raffle_cost = int(input(f" What is the cost of the {raffle_prize} (do not enter the $ sign)> "))
-
-people = input("How many people are in the raffle? > ")
-
-for i in range(1, int(people) + 1):
-    name = input("Enter name of person " + str(i) + ": ")
-
-winner = random.choice(name)
-
-print(f"The winner of the {raffle_prize} that costs ${raffle_cost} is person number {winner}!")
