@@ -131,3 +131,22 @@ for i in range(password_length):
     if include_special_characters == True:
         password += random.choice("!@#$%^&*()-+")
 print(f"Your generated password is: {password}. Thanks for playing {name} {surname}!")
+
+
+
+
+'''code from another file, it's just being stored here for now, it's not part of the program.'''
+
+while keep_asking == True:
+    while AGE_LIMIT < 0 or WEIGHT_LIMIT < 0 or AGE_LIMIT > 80 or WEIGHT_LIMIT > 300:
+        print("That is not a valid input. Please enter a valid age and weight.")
+        AGE_LIMIT = int(input("Please enter your age: "))
+        WEIGHT_LIMIT = int(input("Please enter your weight in KG: "))
+    if AGE_LIMIT > 9 and WEIGHT_LIMIT > 40:
+        print("The recommended dose for you is 400mg.")
+    elif AGE_LIMIT <= 12:
+        under_12 = WEIGHT_LIMIT * 10
+        print(f"The recommended dose for you is {under_12}mg.")
+    elif AGE_LIMIT >= 12 and AGE_LIMIT <= 52:
+        print("Take 2x500mg tablets.")
+else: print("Please try again with valid age and weight.")
