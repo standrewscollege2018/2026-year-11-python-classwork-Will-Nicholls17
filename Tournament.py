@@ -147,7 +147,7 @@ while keep_asking == True:
         print("-" * 60)
     print("-" * 60)
     time.sleep(3)
-    print(f"{NAME_OF_OUR_TEAM} finished the competition with: {total_points} total points.") 
+    print(f"{NAME_OF_OUR_TEAM} finished the competition with: {total_points} total point(s).") 
     time.sleep(2)
 
     for i in range(1, int(team) + 1):
