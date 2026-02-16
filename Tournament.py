@@ -10,7 +10,7 @@ opponents_temporary = list()
 print("Welcome to the Super Tournament Points Calculation system!")
 
 NAME_OF_OUR_TEAM_NOT_STRIPPED = input("What is the name of your team? > ")
-NAME_OF_OUR_TEAM = NAME_OF_OUR_TEAM_NOT_STRIPPED.strip()
+NAME_OF_OUR_TEAM = NAME_OF_OUR_TEAM_NOT_STRIPPED.strip().capitalize()
 NAME_OF_OUR_TEAM_INPUT = True
 while NAME_OF_OUR_TEAM_INPUT == True:
     if NAME_OF_OUR_TEAM == "":
@@ -24,9 +24,11 @@ while keep_asking == True:
     team_input1 = True
     while team_input1 == True:
         try:
-            team = int(input("How many teams are in the tournament? > "))
-            if team < 0:
-                print("Invalid number of people. Please enter a positive integer.")
+            team = int(input("How many other teams are in the tournament? (you have to write out each opponent's name) > "))
+            if team < 1:
+                print("Invalid number of people. Please enter a number greater than 0.")
+            elif team > 25:
+                print("Invalid number of people. Please enter a number less than or equal to 25.")
             else:
                 team_input1 = False
         except ValueError: 
@@ -38,7 +40,7 @@ while keep_asking == True:
                 keep_asking5 = True
                 while keep_asking5 == True:
                     opponent_name_not_stripped = input("Enter the name of opponent " + str(i) + ": ")
-                    opponent_name = opponent_name_not_stripped.strip()
+                    opponent_name = opponent_name_not_stripped.strip().capitalize()
                     if opponent_name == "":
                         print("Invalid team name. Please enter a non-empty name.")
                     elif opponent_name == NAME_OF_OUR_TEAM:
@@ -104,6 +106,12 @@ while keep_asking == True:
             try:
                 home_team_points = int(input(f"How many points did {NAME_OF_OUR_TEAM} score against {opponent_name}? > "))
                 keep_asking6 = False
+                if home_team_points < 0:
+                    print("Invalid input. Please enter a non-negative integer.")
+                    keep_asking6 = True
+                elif home_team_points > 300:
+                    print("Invalid input. Please enter a number between 0 and 300.")
+                    keep_asking6 = True
             except ValueError:
                 print("Invalid input. Please enter integers only.")
         keep_asking7 = True
@@ -111,6 +119,12 @@ while keep_asking == True:
             try:
                 away_team_points = int(input(f"How many points did {opponent_name} score against {NAME_OF_OUR_TEAM}? > "))
                 keep_asking7 = False
+                if away_team_points < 0:
+                    print("Invalid input. Please enter a non-negative integer.")  
+                    keep_asking7 = True 
+                elif away_team_points > 300:
+                    print("Invalid input. Please enter a number between 0 and 300.")
+                    keep_asking7 = True 
             except ValueError:
                 print("Invalid input. Please enter integers only.")
         if home_team_points > away_team_points:
@@ -132,12 +146,13 @@ while keep_asking == True:
         opponents.remove(opponent_name)
         print("-" * 60)
     print("-" * 60)
+    time.sleep(3)
     print(f"{NAME_OF_OUR_TEAM} finished the competition with: {total_points} total points.") 
     time.sleep(2)
 
     for i in range(1, int(team) + 1):
         opponent_name = opponents_temporary[i - 1]
-        print(f"{opponent_name} finished the competition with: {total_opponents_points[i - 1]} total points.")
+        print(f"{opponent_name} finished the competition with: {total_opponents_points[i - 1]} total point(s).")
         time.sleep(2)
     
     winner1 = max(total_points, max(total_opponents_points))
@@ -149,10 +164,16 @@ while keep_asking == True:
                 print(f"The winner of the tournament is: {opponents_temporary[i]}")
                 break
     time.sleep(2)
-    keep_asking2 = input("Do you want to play the tournament again? (yes/no) > ").lower()
-    if keep_asking2 == "yes":
-        opponents.clear()
-        keep_asking = True
-    elif keep_asking2 == "no":
-        print("Thank you for playing the Super Tournament Points Calculation system! Goodbye!")
-        keep_asking = False
+    keep_asking2_input = True
+    while keep_asking2_input == True:
+        keep_asking2 = input("Do you want to play the tournament again? (yes/no) > ").lower()
+        if keep_asking2 == "yes":
+            opponents.clear()
+            keep_asking = True
+            keep_asking2_input = False
+        elif keep_asking2 == "no":
+            print("Thank you for playing the Super Tournament Points Calculation system! Goodbye!")
+            keep_asking = False
+            keep_asking2_input = False
+        else:
+            print("Invalid input. Please enter 'yes' or 'no'.")
