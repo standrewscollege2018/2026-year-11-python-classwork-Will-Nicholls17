@@ -7,7 +7,7 @@ while keep_asking:
             keep_asking = False
         elif num_terms == 0:
             print("The Fibonacci series has no terms. Please enter a positive integer.")
-        elif num_terms > 500:
+        elif num_terms > 650:
             print("That's a lot of terms! Please enter a smaller positive integer.")
         else:
             print("Please enter a positive integer.")

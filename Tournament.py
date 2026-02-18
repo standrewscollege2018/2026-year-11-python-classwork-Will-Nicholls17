@@ -237,6 +237,8 @@ while keep_asking_entire_team_name_input == True:
         winner1 = max(total_points, max(total_opponents_points))
         if winner1 == total_points:
             print(f"The winner of the tournament is: {name_of_our_team}")
+        elif total_opponents_points and name_of_our_team == total_points:
+            print(f"This tournament is a draw between {opponents_temporary} and {name_of_our_team}")
         else:
             for i in range(len(total_opponents_points)):
                 if total_opponents_points[i] == winner1:
@@ -270,21 +272,21 @@ while keep_asking_entire_team_name_input == True:
                     play_new_opponents_names_input = input("Do you want to play the tournament again with the same opponents names? (yes/no) > ").lower()
                     if play_new_opponents_names_input == "yes":
                         print("Great! Let's play the tournament again with the same team name but new opponents names!")
-                        keep_asking = False
+                        keep_asking = True
                         keep_asking_full_game = False
-                        keep_asking_entire_team_name_input = False
+                        keep_asking_entire_team_name_input = True
                     elif play_new_opponents_names_input == "no":
                         print("Great! Let's play the tournament again with the same team name but new opponents names!")
                         keep_asking = False
                         keep_asking_full_game = False
-                        keep_asking_entire_team_name_input = False
+                        keep_asking_entire_team_name_input = True
                     else:
                         print("Invalid input. Please enter 'yes' or 'no'.")
                 elif play_new_names_input == "no":
                     print("Great! Let's play the tournament again with new team name and new opponents names!")
+                    keep_asking_entire_team_name_input = True
                     keep_asking = False
                     keep_asking_full_game = False
-                    keep_asking_entire_team_name_input = True
                 else:
                     print("Invalid input. Please enter 'yes' or 'no'.")
             else:
