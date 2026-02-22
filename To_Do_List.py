@@ -4,65 +4,103 @@ import random
 import time
 import sys
 
+event_list = []
 
-
-exit_button = ''
-events = []
-
-def add_event(event_list):
-    print("-" * 30)
-    print("Welcome to the event add screen")
-    new_event = input("Please enter a new event > ")
-    event_list.append(new_event)
-    input("Press enter to continue...")
-    time.sleep(1)
-def view_events(event_list):
-    count = 1
-    print("-" * 30)
-    for events in event_list:
-        print(f"{count}-Event Name: {events}")
-        count += 1
-    print("-" * 30)
-    input("Press Enter to continue...")
-    time.sleep(1)
-    print("-" * 30)
-def select_random_event(event_list):
-    print("-" * 30)
-    count = 1
-    num_of_event = int(input("How many events to select?: "))
-    random_event = random.sample(event_list, num_of_event)
-    for events in random_event:
-        print(f"{count}-Event Name: {events}")
-        count += 1
-        print("Selecting the next event from the system...")
-        time.sleep(1)
-    print("-" * 30)
-    input("Press Enter to continue...")
-def shuffle_events(event_list):
-    count = 1
-    random.shuffle(event_list)
-    for events in event_list:
-        print(f"{count}-Event Name: {events}")
-        count += 1
-    print("-" * 30)
-    input("Press Enter to continue...")
-    time.sleep(1)
-    print("-" * 30)
 while True:
-    print("\n****Welcome to your very own to do list****\n \n**If you want to close the program simply type '10' into the input key**\n")
+    print("\n****Welcome to your very own to do list****\n \n**If you want to close the program simply type '6' into the input key**\n")
     print("-" * 40)
-    print("1-Add event\n2-View events\n3-Shuffle the events\n4-Select Random Event to do\n")
+    print("1-Add event\n2-View events\n3-Shuffle the events\n4-Select Random Event to do\n5-Remove Event\n")
     print("-" * 30)
-    section_choice = int(input("Choose an option > "))
+    while True:
+        try:
+            section_choice = int(input("Choose an option > "))
+            if section_choice < 0:
+                print("Please enter a non-negative inter")
+            elif section_choice >= 7:
+                print("Please don't enter a number higher than the options given")
+            else:
+                break
+        except ValueError:
+            print("Please enter an integer")
     if section_choice == 1:
-        add_event(events)
+        print("-" * 30)
+        print("Welcome to the event add screen (If you want to cancel the add new event, write 'cancel')")
+        while True:
+            event = input("Please enter a new event > ")
+            if event == '':
+                print("Please enter a non empty event")
+            elif event == 'cancel':
+                break
+            elif event in event_list:
+                print("You've already chosen that as one of your events.")
+            else:
+                event_list.append(event)
+                break
+        print()
+        input("Press enter to continue...")
+        time.sleep(1)
     elif section_choice == 2:
-        view_events(events)
-    elif section_choice == 3: 
-        shuffle_events(events)
+        print("-" * 30)
+        print("Welcome to the event show screen.\n")
+        if not event_list:
+            print("No events in your list yet!")
+        else:
+            for i, event in enumerate(event_list, start=1):
+                print(f"{i}. {event}")
+        print("-" * 30)
+        input("Press Enter to continue...")
+        time.sleep(1)
+        print("-" * 30)
+    elif section_choice == 3:
+        print("-" * 30)
+        print("Welcome to the event random change screen.")
+        if not event_list:
+            print("No events to shuffle!")
+        else:
+            random.shuffle(event_list)
+            time.sleep(1)
+            print("Events shuffled successfully!")
+        print("-" * 30)
+        input("Press Enter to continue...")
     elif section_choice == 4:
-        select_random_event(events)
-    elif section_choice == 10:
+        print("-" * 30)
+        print("Welcome to the random event to do page.")
+        if not event_list:
+            print("You don't have any events yet!")
+        else:
+            random_event = random.choice(event_list)
+            print(f"You have been chosen to do: {random_event}")
+        print("-" * 30)
+        input("Press Enter to continue...")
+        time.sleep(1)
+        print("-" * 30)
+    elif section_choice == 5:
+        print("-" * 30)
+        print("Welcome to the event remove screen\n")
+        if not event_list:
+            print("No tasks available to delete!")
+            input("Press enter to continue")
+            continue
+        print("\nCurrent events: ")
+        for i, task in enumerate(event_list, start = 1):
+            print(f"{i}. {task}")
+
+        try:
+            delete_event_num = int(input("Enter a task to delete: "))
+            if 1 <= delete_event_num <= len(event_list):
+                removed_event = event_list.pop(delete_event_num - 1)
+                print(f"Task '{removed_event}' deleted successfully!")
+            else:
+                print("Invalid task number!")
+        except ValueError:
+            print("Please enter a valid number.")
+        input("Press Enter to continue...")
+        time.sleep(1)
+        print("-" * 30)
+    elif section_choice == 6:
+        print("Thank you for my To - Do list!")
         sys.exit()
     else:
         print("Please enter a valid number.")
+
+    
