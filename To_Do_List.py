@@ -102,5 +102,3 @@ while True:
         sys.exit()
     else:
         print("Please enter a valid number.")
-
-    

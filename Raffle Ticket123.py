@@ -48,7 +48,7 @@ while keep_playing:
 
     time.sleep(2)
 
-    print(f"The winner of the {raffle_prize} that costs ${raffle_cost} is person number {names.index(winner) + 1} {winner}!")
+    print(f"The winner of the {raffle_prize} that costs ${raffle_cost} is person number {names.index(winner) + 1} > {winner}!")
     keep_playing_input = input("Do you want to play again? (yes/no) > ").lower()
     if keep_playing_input != "yes":
         keep_playing = False
